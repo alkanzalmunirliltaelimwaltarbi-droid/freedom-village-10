@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#087f5b">
+<meta name="description" content="منصة خدمات قرية الحرية - حمص">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="خدمات الحرية">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./assets/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="./assets/icon-192.png">
+<link rel="stylesheet" href="./styles.css">
+<title>برنامج خدمات قرية الحرية</title>
+</head>
+<body>
+<div id="toast" class="toast" hidden></div>
+<div id="loading" class="loading" hidden><div class="spinner"></div><span>جارٍ التحميل...</span></div>
+
+<section id="loginView" class="login-wrap">
+  <div class="login-card glass">
+    <img class="village-logo" src="./assets/freedom-village-logo.png" alt="شعار قرية الحرية">
+    <div class="eyebrow">منصة الخدمات الرقمية</div>
+    <h1>برنامج خدمات قرية الحرية</h1>
+    <p class="muted">حمص · سوريا</p>
+    <form id="loginForm" autocomplete="off">
+      <label for="accessCode">رمز الدخول</label>
+      <input id="accessCode" name="accessCode" inputmode="text" autocapitalize="characters" spellcheck="false" maxlength="64" placeholder="أدخل رمز الدخول" required>
+      <button class="primary big" type="submit">دخول آمن</button>
+    </form>
+    <button id="installBtn" class="secondary" hidden>تثبيت التطبيق على الهاتف</button>
+    <div class="login-help">الدخول العادي محدود بخدمات القرية. رموز المشرفين تمنح صلاحيات الإدارة الكاملة.</div>
+    <div class="credit">مصمم البرنامج الشيخ علي العثمان حفظه اللّٰه تعالى لعام ١٤٤٨هـ</div>
+  </div>
+</section>
+
+<section id="appView" hidden>
+<header class="topbar glass">
+  <div class="brand"><img src="./assets/icon-192.png" alt=""><div><strong>خدمات الحرية</strong><small id="welcomeName"></small></div></div>
+  <div class="top-actions"><button id="syncBtn" class="icon-btn" title="مزامنة">↻</button><button id="logoutBtn" class="icon-btn" title="خروج">⎋</button></div>
+</header>
+<main class="page">
+  <section id="home" class="screen active">
+    <div class="hero glass">
+      <div><span class="eyebrow">أهلاً بكم</span><h2>منصة قرية الحرية</h2><p>الخدمات والمعلومات الرسمية للقرية في مكان واحد.</p></div>
+      <div class="datebox"><strong id="clock">--:--:--</strong><span id="gregDate">--</span><span id="hijriDate">--</span></div>
+    </div>
+    <div class="grid-2">
+      <article class="card"><div class="card-title"><span>🕌</span><h3>أوقات الصلاة</h3></div><div id="prayerCard"></div></article>
+      <article class="card"><div class="card-title"><span>📢</span><h3>آخر الإعلانات</h3></div><div id="newsPreview"></div></article>
+    </div>
+    <div class="grid-3" id="homeStats"></div>
+  </section>
+
+  <section id="news" class="screen"><div class="section-head"><div><span class="eyebrow">المعلومات</span><h2>الأخبار والإعلانات</h2></div></div><div id="newsList" class="stack"></div></section>
+  <section id="prayer" class="screen"><div class="section-head"><div><span class="eyebrow">المسجد</span><h2>أوقات الصلاة</h2></div></div><div id="prayerFull" class="card"></div></section>
+  <section id="services" class="screen"><div class="section-head"><div><span class="eyebrow">الخدمات</span><h2>خدمات القرية</h2></div></div><div id="servicesList" class="grid-2"></div></section>
+  <section id="emergency" class="screen"><div class="section-head"><div><span class="eyebrow">مساعدة عاجلة</span><h2>أرقام الطوارئ</h2></div></div><div id="emergencyList" class="grid-2"></div></section>
+  <section id="complaints" class="screen">
+    <div class="section-head"><div><span class="eyebrow">خدمة الأهالي</span><h2>الشكاوى</h2></div></div>
+    <form id="complaintForm" class="card form-card"><input id="complaintTitle" placeholder="عنوان الشكوى" required><textarea id="complaintBody" placeholder="اكتب تفاصيل الشكوى..." required></textarea><button class="primary">إرسال الشكوى</button></form>
+    <div id="myComplaints" class="stack"></div>
+  </section>
+  <section id="suggestions" class="screen">
+    <div class="section-head"><div><span class="eyebrow">شاركنا رأيك</span><h2>المقترحات</h2></div></div>
+    <form id="suggestionForm" class="card form-card"><input id="suggestionTitle" placeholder="عنوان المقترح" required><textarea id="suggestionBody" placeholder="اكتب المقترح..." required></textarea><button class="primary">إرسال المقترح</button></form>
+    <div id="mySuggestions" class="stack"></div>
+  </section>
+  <section id="events" class="screen"><div class="section-head"><div><span class="eyebrow">المواعيد</span><h2>الفعاليات</h2></div></div><div id="eventsList" class="stack"></div></section>
+  <section id="directory" class="screen"><div class="section-head"><div><span class="eyebrow">الدليل</span><h2>دليل القرية</h2></div></div><div id="directoryList" class="grid-2"></div></section>
+  <section id="about" class="screen"><div class="card about"><img src="./assets/freedom-village-logo.png" alt=""><h2>عن المنصة</h2><p>منصة رقمية لخدمة أهالي قرية الحرية، وإتاحة الأخبار والخدمات والشكاوى والمقترحات والمعلومات المهمة.</p><p class="credit">مصمم البرنامج الشيخ علي العثمان حفظه اللّٰه تعالى لعام ١٤٤٨هـ</p></div></section>
+
+  <section id="admin" class="screen" hidden>
+    <div class="section-head"><div><span class="eyebrow">صلاحيات كاملة</span><h2>لوحة تحكم المشرف</h2></div><span id="adminBadge" class="badge">المشرف العام</span></div>
+    <div id="adminStats" class="grid-3"></div>
+    <div class="admin-tabs" id="adminTabs"></div>
+    <div id="adminPanel"></div>
+  </section>
+</main>
+
+<nav class="bottom-nav" id="bottomNav">
+  <button data-go="home" class="active">⌂<span>الرئيسية</span></button>
+  <button data-go="news">▤<span>الأخبار</span></button>
+  <button data-go="services">▦<span>الخدمات</span></button>
+  <button data-go="complaints">⚑<span>الشكاوى</span></button>
+  <button data-go="more">☰<span>المزيد</span></button>
+</nav>
+<div id="moreSheet" class="sheet" hidden>
+  <div class="sheet-inner glass">
+    <button data-go="prayer">🕌 أوقات الصلاة</button><button data-go="emergency">☎ الطوارئ</button><button data-go="suggestions">💡 المقترحات</button><button data-go="events">📅 الفعاليات</button><button data-go="directory">👥 الدليل</button><button data-go="about">ℹ عن المنصة</button><button id="moreAdmin" data-go="admin" hidden>⚙ الإدارة</button>
+  </div>
+</div>
+</section>
+<script src="./config.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>

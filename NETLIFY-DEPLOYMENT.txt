@@ -1,0 +1,7 @@
+برنامج خدمات قرية الحرية — Netlify Final
+النشر: Netlify
+المزامنة: Supabase
+PWA: نعم
+المسار العام: /
+لا ترفع أي service_role أو sb_secret إلى ملفات الموقع العامة.
+إذا كان مشروع Supabase غير مهيأ بعد، نفّذ ملف supabase/INSTALL-FINAL.sql في SQL Editor.

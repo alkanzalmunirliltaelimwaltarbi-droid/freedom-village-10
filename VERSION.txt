@@ -1,0 +1,5 @@
+برنامج خدمات قرية الحرية
+الإصدار النهائي المعتمد — FINAL APP
+PWA Android standalone
+Supabase cloud sync
+GitHub Pages deployment
